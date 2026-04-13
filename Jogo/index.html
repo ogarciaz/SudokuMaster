@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#fff">
+    <title>Sudoku Master - Jogo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="app.css">
+    <style>
+        .back-link {
+            position: fixed;
+            top: 80px;
+            left: 20px;
+            background: var(--accent-color);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            z-index: 100;
+            transition: all 0.3s;
+        }
+        .back-link:hover {
+            transform: translateX(-3px);
+            opacity: 0.9;
+        }
+
+        /* CONTROLE DE MÚSICA */
+        .music-control {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 1000;
+        }
+
+        .music-btn {
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .music-btn:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+
+<body>
+
+    <a href="../TelaInicial.html" class="back-link">← Voltar</a>
+
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="nav-logo">Sudoku Master</a>
+            <div class="dark-mode-toggle" id="dark-mode-toggle">
+                <i class="bx bxs-sun"></i>
+                <i class="bx bxs-moon"></i>
+            </div>
+        </div>
+    </nav>
+
+    <div class="main">
+        <div class="screen">
+            <!-- start screen -->
+            <div class="start-screen active" id="start-screen">
+                <input type="text" placeholder="Seu nome" maxlength="11" class="input-name" id="input-name">
+                <div class="btn" id="btn-level">Easy</div>
+                <div class="btn" id="btn-continue">Continue</div>
+                <div class="btn btn-blue" id="btn-play">New game</div>
+            </div>
+
+            <!-- game screen -->
+            <div class="main-game" id="game-screen">
+                <div class="main-sudoku-grid">
+                    <!-- 81 cells -->
+                    <div class="main-grid-cell"></div><div class="main-grid-cell"></div><div class="main-grid-cell"></div><div class="main-grid-cell"></div><div class="main-grid-cell"></div><div class="main-grid-cell"></div><div class="main-grid-cell"></div><div class="main-grid-cell"></div><div class="main-grid-cell"></div>
+                    <div class="main-grid-cell"></div><div class="main-grid-cell"></div><div class="main-grid-cell"></div><div class="main-grid-cell"></div><div class="main-grid-cell"></div><div class="main-grid-cell"></div><div class="main-grid-cell"></div><div class="main-grid-cell"></div><div class="main-grid-cell"></div>
+                    <div class="main-grid-cell"></div><div class="main-grid-cell"></div><div class="main-grid-cell"></div><div class="main-grid-cell"></div><div class="main-grid-cell"></div><div class="main-grid-cell"></div><div class="main-grid-cell"></div><div class="main-grid-cell"></div><div class="main-grid-cell"></div>
+                    <div class="main-grid-cell"></div><div class="main-grid-cell"></div><div class="main-grid-cell"></div><div class="main-grid-cell"></div><div class="main-grid-cell"></div><div class="main-grid-cell"></div><div class="main-grid-cell"></div><div class="main-grid-cell"></div><div class="main-grid-cell"></div>
+                    <div class="main-grid-cell"></div><div class="main-grid-cell"></div><div class="main-grid-cell"></div><div class="main-grid-cell"></div><div class="main-grid-cell"></div><div class="main-grid-cell"></div><div class="main-grid-cell"></div><div class="main-grid-cell"></div><div class="main-grid-cell"></div>
+                    <div class="main-grid-cell"></div><div class="main-grid-cell"></div><div class="main-grid-cell"></div><div class="main-grid-cell"></div><div class="main-grid-cell"></div><div class="main-grid-cell"></div><div class="main-grid-cell"></div><div class="main-grid-cell"></div><div class="main-grid-cell"></div>
+                    <div class="main-grid-cell"></div><div class="main-grid-cell"></div><div class="main-grid-cell"></div><div class="main-grid-cell"></div><div class="main-grid-cell"></div><div class="main-grid-cell"></div><div class="main-grid-cell"></div><div class="main-grid-cell"></div><div class="main-grid-cell"></div>
+                    <div class="main-grid-cell"></div><div class="main-grid-cell"></div><div class="main-grid-cell"></div><div class="main-grid-cell"></div><div class="main-grid-cell"></div><div class="main-grid-cell"></div><div class="main-grid-cell"></div><div class="main-grid-cell"></div><div class="main-grid-cell"></div>
+                    <div class="main-grid-cell"></div><div class="main-grid-cell"></div><div class="main-grid-cell"></div><div class="main-grid-cell"></div><div class="main-grid-cell"></div><div class="main-grid-cell"></div><div class="main-grid-cell"></div><div class="main-grid-cell"></div><div class="main-grid-cell"></div>
+                </div>
+
+                <div class="main-game-info">
+                    <div class="main-game-info-box main-game-info-name">
+                        <span id="player-name"></span>
+                    </div>
+                    <div class="main-game-info-box main-game-info-level">
+                        <span id="game-level">Easy</span>
+                    </div>
+                    <div class="main-game-info-box">
+                        <span>⭐ Pontos: <span id="game-points">0</span></span>
+                    </div>
+                </div>
+
+                <div class="main-game-info-box main-game-info-time">
+                    <span id="game-time">00:00</span>
+                    <div class="pause-btn" id="btn-pause">
+                        <i class="bx bx-pause"></i>
+                    </div>
+                </div>
+
+                <div class="numbers">
+                    <div class="number">1</div>
+                    <div class="number">2</div>
+                    <div class="number">3</div>
+                    <div class="number">4</div>
+                    <div class="number">5</div>
+                    <div class="number">6</div>
+                    <div class="number">7</div>
+                    <div class="number">8</div>
+                    <div class="number">9</div>
+                    <div class="delete" id="btn-delete">X</div>
+                </div>
+            </div>
+
+            <!-- pause screen -->
+            <div class="pause-screen" id="pause-screen">
+                <div class="btn btn-blue" id="btn-resume">Resume</div>
+                <div class="btn" id="btn-new-game">New game</div>
+            </div>
+
+            <!-- result screen -->
+            <div class="result-screen" id="result-screen">
+                <div class="congrate">Completed!</div>
+                <div class="info">Time</div>
+                <div id="result-time"></div>
+                <div class="info">⭐ Pontuação Final: <span id="final-points">0</span></div>
+                <div class="btn" id="btn-new-game-2">New game</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- BOTÃO DE MÚSICA -->
+    <div class="music-control">
+        <button class="music-btn" id="music-btn">🔊</button>
+    </div>
+
+    <!-- MÚSICA LOCAL (MP3) -->
+    <audio id="bg-music" loop preload="auto">
+        <source src="/music/Debussy - Clair de Lune - Rousseau (youtube).mp3" type="audio/mpeg">
+    
+    </audio>
+
+    <script src="constant.js"></script>
+    <script src="sudoku.js"></script>
+    <script src="app.js"></script>
+    
+    <script>
+        // ========== MÚSICA LOCAL (MP3) ==========
+        const audio = document.getElementById('bg-music');
+        const musicBtn = document.getElementById('music-btn');
+        
+        // Volume fixo em 35%
+        audio.volume = 0.35;
+        audio.loop = true;
+        
+        let musicaTocando = false;
+        
+        function tocarMusica() {
+            audio.play().then(() => {
+                musicaTocando = true;
+                musicBtn.innerHTML = '🔊';
+                console.log("🎵 Clair de Lune tocando (35% volume)");
+            }).catch((erro) => {
+                musicaTocando = false;
+                musicBtn.innerHTML = '🔇';
+                console.log("Erro: " + erro.message);
+                console.log("Verifique se o arquivo está em: jogo/music/Clair-de-Lune.mp3");
+            });
+        }
+        
+        // Botão de música
+        musicBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            
+            if (musicaTocando) {
+                audio.pause();
+                musicaTocando = false;
+                musicBtn.innerHTML = '🔇';
+                console.log("🔇 Música pausada");
+            } else {
+                tocarMusica();
+            }
+        });
+        
+        // Tenta tocar ao carregar
+        tocarMusica();
+        
+        console.log("🎮 Sudoku Master | 🎵 Música: Clair de Lune - Debussy");
+        console.log("📁 Arquivo esperado: jogo/music/Clair-de-Lune.mp3");
+    </script>
+</body>
+
+</html>

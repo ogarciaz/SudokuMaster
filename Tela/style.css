@@ -1,0 +1,283 @@
+
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap');
+
+* {
+    margin: 10x;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: #f4ecd8;
+    background-image: radial-gradient(circle at 25% 40%, rgba(200, 180, 140, 0.08) 2%, transparent 2.5%),
+                      radial-gradient(circle at 70% 85%, rgba(160, 130, 80, 0.06) 1.5%, transparent 2%);
+    background-size: 40px 40px, 35px 35px;
+    min-height: 100vh;
+    color: #2c2418;
+    line-height: 1.5;
+}
+
+/* HEADER ESTILO VINTAGE */
+header {
+    background: #2c2418;
+    padding: 0.8rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 3px solid #c9a03d;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.logo h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    color: #c9a03d;
+    letter-spacing: 1px;
+}
+
+.logo p {
+    font-size: 0.7rem;
+    color: #a89880;
+    font-style: italic;
+}
+
+.nav-buttons {
+    display: flex;
+    gap: 0.8rem;
+}
+
+.nav-btn {
+    background: transparent;
+    border: 1px solid #c9a03d;
+    color: #c9a03d;
+    padding: 0.4rem 1rem;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: 500;
+    font-size: 0.85rem;
+}
+
+.nav-btn:hover {
+    background: #c9a03d;
+    color: #2c2418;
+    transform: translateY(-2px);
+}
+
+/* CONTAINER */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* HERO - ESTILO CADERNO */
+.hero {
+    text-align: center;
+    padding: 3rem 2rem;
+    background: #fffcf5;
+    border-radius: 24px;
+    margin-bottom: 3rem;
+    border: 1px solid #e8ddcc;
+    box-shadow: 8px 8px 0 rgba(44, 36, 24, 0.08);
+    position: relative;
+}
+
+.hero::before {
+    content: "✧";
+    font-size: 2rem;
+    color: #c9a03d;
+    opacity: 0.3;
+    position: absolute;
+    top: -15px;
+    left: 20px;
+}
+
+.hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    margin-bottom: 1rem;
+    color: #2c2418;
+    font-weight: 600;
+}
+
+.hero p {
+    font-size: 1.1rem;
+    color: #6b5a48;
+    max-width: 600px;
+    margin: 0 auto 2rem;
+}
+
+/* BOTÃO JOGAR - ESTILO ORIGINAL */
+.play-button {
+    display: inline-block;
+    background: #c9a03d;
+    color: #2c2418;
+    font-size: 1.2rem;
+    font-weight: 600;
+    padding: 0.9rem 2.2rem;
+    border-radius: 40px;
+    text-decoration: none;
+    transition: all 0.3s;
+    border: none;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+}
+
+.play-button:hover {
+    background: #b88b2c;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+}
+
+/* SEÇÕES */
+.section {
+    background: #fffcf5;
+    border-radius: 20px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    border: 1px solid #e8ddcc;
+    transition: all 0.3s;
+}
+
+.section:hover {
+    transform: translateY(-4px);
+    box-shadow: 6px 6px 0 rgba(44, 36, 24, 0.06);
+}
+
+.section h2 {
+    font-family: 'Playfair Display', serif;
+    color: #2c2418;
+    font-size: 1.6rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    border-left: 4px solid #c9a03d;
+    padding-left: 1rem;
+}
+
+.section h2 span {
+    font-size: 1.8rem;
+}
+
+/* CARDS DE REGRAS */
+.rules-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 1.5rem;
+}
+
+.rule-card {
+    background: #f9f4ea;
+    padding: 1.5rem;
+    border-radius: 16px;
+    text-align: center;
+    border-bottom: 3px solid #c9a03d;
+}
+
+.rule-icon {
+    font-size: 2.2rem;
+    margin-bottom: 0.8rem;
+}
+
+.rule-card h3 {
+    color: #c9a03d;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+}
+
+.rule-card p {
+    font-size: 0.85rem;
+    color: #6b5a48;
+}
+
+/* CARACTERÍSTICAS */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1.2rem;
+}
+
+.feature {
+    text-align: center;
+    padding: 1.2rem;
+    background: #f9f4ea;
+    border-radius: 16px;
+}
+
+.feature-icon {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+}
+
+.feature h3 {
+    font-size: 0.9rem;
+    color: #c9a03d;
+    margin-bottom: 0.3rem;
+}
+
+.feature p {
+    font-size: 0.75rem;
+    color: #6b5a48;
+}
+
+/* DICAS */
+.tips-list {
+    list-style: none;
+}
+
+.tips-list li {
+    padding: 0.8rem 0;
+    border-bottom: 1px dashed #e0d5c4;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.tip-bullet {
+    background: #c9a03d;
+    color: #2c2418;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+/* FOOTER */
+footer {
+    background: #2c2418;
+    padding: 1.5rem;
+    text-align: center;
+    border-top: 1px solid #c9a03d;
+    margin-top: 2rem;
+}
+
+footer p {
+    color: #a89880;
+    font-size: 0.8rem;
+}
+
+/* RESPONSIVO */
+@media (max-width: 768px) {
+    .hero h1 { font-size: 2rem; }
+    .container { padding: 1rem; }
+    .section { padding: 1.2rem; }
+    .header-content { flex-direction: column; text-align: center; }
+}
