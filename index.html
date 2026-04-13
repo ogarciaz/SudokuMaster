@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sudoku Master - Desafie sua mente</title>
+    <link rel="stylesheet" href="/style.css">
+    <style>
+        /* CSS DA VERIFICAÇÃO DE IDADE */
+        .age-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(8px);
+        }
+
+        .age-modal {
+            background: #fffcf5;
+            border-radius: 24px;
+            padding: 2rem;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            border: 2px solid #c9a03d;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .age-modal h2 {
+            color: #c9a03d;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .age-modal p {
+            color: #6b5a48;
+            margin-bottom: 1.5rem;
+        }
+
+        .age-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .age-btn {
+            padding: 0.8rem 2rem;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+        }
+
+        .age-btn-sim {
+            background: #c9a03d;
+            color: white;
+        }
+
+        .age-btn-sim:hover {
+            background: #b88b2c;
+            transform: scale(1.05);
+        }
+
+        .age-btn-nao {
+            background: #dc2626;
+            color: white;
+        }
+
+        .age-btn-nao:hover {
+            background: #b91c1c;
+            transform: scale(1.05);
+        }
+
+        .conteudo-borrado {
+            filter: blur(8px);
+            pointer-events: none;
+            user-select: none;
+        }
+
+        /* BOTÃO TEMA */
+        .theme-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .theme-btn {
+            background: #c9a03d;
+            color: #2c2418;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .theme-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* TEMA ESCURO */
+        body.tema-escuro {
+            background: #0f1117;
+        }
+
+        body.tema-escuro .hero,
+        body.tema-escuro .section {
+            background: #1a1d24;
+            border-color: #2a2f3a;
+            color: #e0e0e0;
+        }
+
+        body.tema-escuro .hero h1,
+        body.tema-escuro .section h2 {
+            color: #7c3aed;
+        }
+
+        body.tema-escuro .rule-card,
+        body.tema-escuro .feature {
+            background: #111318;
+        }
+
+        body.tema-escuro .play-button {
+            background: #7c3aed;
+        }
+
+        body.tema-escuro .play-button:hover {
+            background: #a855f7;
+        }
+
+        body.tema-escuro .age-modal {
+            background: #1a1d24;
+            border-color: #7c3aed;
+        }
+
+        body.tema-escuro .age-modal p {
+            color: #a0a4b8;
+        }
+
+        body.tema-escuro .theme-btn {
+            background: #7c3aed;
+            color: white;
+        }
+
+        * {
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- VERIFICAÇÃO DE IDADE -->
+    <div id="ageOverlay" class="age-overlay">
+        <div class="age-modal">
+            <h2>🔞 Verificação de Idade</h2>
+            <p>Este jogo é recomendado para maiores de 13 anos.<br>Você tem 13 anos ou mais?</p>
+            <div class="age-buttons">
+                <button class="age-btn age-btn-sim" onclick="verificarIdade(true)">SIM, TENHO 13+</button>
+                <button class="age-btn age-btn-nao" onclick="verificarIdade(false)">NÃO, SOU MENOR</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <div id="conteudoPrincipal">
+        <header>
+            <div class="header-content">
+                <div class="logo">
+                    <h1> 🧩 SUDOKU MASTER</h1>
+                    <p>desafie seu raciocínio lógico</p>
+                </div>
+                <div class="nav-buttons">
+                    <button class="nav-btn" onclick="scrollToSection('como-jogar')">Como Jogar</button>
+                    <button class="nav-btn" onclick="scrollToSection('caracteristicas')">Características</button>
+                    <button class="nav-btn" onclick="scrollToSection('dicas')">Dicas</button>
+                </div>
+            </div>
+        </header>
+
+        <div class="container">
+            <div class="hero">
+                <h1>Bem-vindo ao Sudoku Master!</h1>
+                <p> Prepare-se para exercitar seu cérebro com o jogo de raciocínio mais famoso do mundo. Complete o tabuleiro e alcance a pontuação máxima!</p>
+                <a href="/Jogo/index.html" class="play-button">🎮 JOGAR AGORA</a>
+            </div>
+
+            <div id="como-jogar" class="section">
+                <h2>
+                    <span>📖</span> 
+                    Como Jogar Sudoku
+                </h2>
+                <div class="rules-grid">
+                    <div class="rule-card">
+                        <div class="rule-icon">🔢</div>
+                        <h3>Preencha o Tabuleiro</h3>
+                        <p>Complete todas as células vazias com números de 1 a 9</p>
+                    </div>
+                    <div class="rule-card">
+                        <div class="rule-icon">➖</div>
+                        <h3>Sem Repetições nas Linhas</h3>
+                        <p>Cada número pode aparecer apenas uma vez por linha</p>
+                    </div>
+                    <div class="rule-card">
+                        <div class="rule-icon">⬇️</div>
+                        <h3>Sem Repetições nas Colunas</h3>
+                        <p>Cada número pode aparecer apenas uma vez por coluna</p>
+                    </div>
+                    <div class="rule-card">
+                        <div class="rule-icon">🔲</div>
+                        <h3>Sem Repetições nos Quadrantes</h3>
+                        <p>Cada região 3x3 deve conter todos os números de 1 a 9</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="caracteristicas" class="section">
+                <h2>
+                    <span>✨</span> 
+                    Características do Jogo
+                </h2>
+                <div class="features-grid">
+                    <div class="feature">
+                        <div class="feature-icon">⭐</div>
+                        <h3>Sistema de Pontuação</h3>
+                        <p>Ganhe pontos a cada número colocado corretamente</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">🏆</div>
+                        <h3>Recordes</h3>
+                        <p>Supere sua melhor pontuação a cada partida</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">🎯</div>
+                        <h3>Diferentes Níveis</h3>
+                        <p>Do iniciante ao expert, desafie-se em várias dificuldades</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">⚡</div>
+                        <h3>Interface Intuitiva</h3>
+                        <p>Clique e digite, simples e rápido</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">💾</div>
+                        <h3>Progresso Salvo</h3>
+                        <p>Seu recorde fica guardado para a próxima partida</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">🎨</div>
+                        <h3>Visual Moderno</h3>
+                        <p>Tema escuro para conforto visual</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="dicas" class="section">
+                <h2>
+                    <span>💡</span> 
+                    Dicas para Iniciantes
+                </h2>
+                <ul class="tips-list">
+                    <li>
+                        <span class="tip-bullet">01</span>
+                        <span><strong>Comece pelos números mais frequentes</strong> - Observe quais números aparecem mais no tabuleiro inicial</span>
+                    </li>
+                    <li>
+                        <span class="tip-bullet">02</span>
+                        <span><strong>Use a técnica do "único possível"</strong> - Em cada linha/coluna/quadrante, veja qual número falta</span>
+                    </li>
+                    <li>
+                        <span class="tip-bullet">03</span>
+                        <span><strong>Anote possibilidades</strong> - Em células difíceis, liste mentalmente os números que podem encaixar</span>
+                    </li>
+                    <li>
+                        <span class="tip-bullet">04</span>
+                        <span><strong>Verifique sempre</strong> - Antes de colocar um número, confira se ele não repete na linha, coluna e quadrante</span>
+                    </li>
+                    <li>
+                        <span class="tip-bullet">05</span>
+                        <span><strong>Pratique regularmente</strong> - Quanto mais você joga, mais rápido seu raciocínio se desenvolve</span>
+                    </li>
+                    <li>
+                        <span class="tip-bullet">06</span>
+                        <span><strong>Comece pelos níveis fáceis</strong> - Domine a lógica básica antes de avançar</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="section" style="text-align: center;">
+                <h2>Pronto para o desafio?</h2>
+                <p style="margin-bottom: 1.5rem;">Teste seu raciocínio e divirta-se com o Sudoku Master!</p>
+                <a href="/Jogo/index.html" class="play-button" style="font-size: 1.1rem; padding: 0.8rem 2rem;">🚀 COMEÇAR AGORA</a>
+            </div>
+        </div>
+
+        <footer>
+            <p>🧩 Sudoku Master - Desafie sua mente todos os dias!</p>
+            <p style="margin-top: 0.5rem;">Desenvolvido com HTML CSS JS | Sua pontuação aparece em tempo real</p>
+        </footer>
+    </div>
+
+    <!-- BOTÃO DE TEMA -->
+    <div class="theme-toggle">
+        <button class="theme-btn" id="temaBtn" onclick="alternarTema()">🌙</button>
+    </div>
+
+    <script>
+        // FUNÇÃO PARA ROLAR ATÉ A SEÇÃO
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                element.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        }
+
+        // VERIFICAÇÃO DE IDADE
+        function verificarIdade(maiorDe13) {
+            const overlay = document.getElementById('ageOverlay');
+            const conteudo = document.getElementById('conteudoPrincipal');
+            
+            if (maiorDe13) {
+                // Maior de 13 libera o site
+                overlay.style.display = 'none';
+                conteudo.classList.remove('conteudo-borrado');
+            } else {
+                // Menor de 13 - borra o site
+                overlay.style.display = 'none';
+                conteudo.classList.add('conteudo-borrado');
+                alert('⚠️ Este jogo é recomendado para maiores de 13 anos. Volte quando tiver 13 anos ou mais!');
+            }
+        }
+
+        // TEMA ESCURO/CLARO
+        let temaSalvo = localStorage.getItem('tema');
+        
+        function aplicarTema() {
+            if (temaSalvo === 'escuro') {
+                document.body.classList.add('tema-escuro');
+                document.getElementById('temaBtn').textContent = '☀️';
+            } else {
+                document.body.classList.remove('tema-escuro');
+                document.getElementById('temaBtn').textContent = '🌙';
+            }
+        }
+        
+        function alternarTema() {
+            const body = document.body;
+            const btn = document.getElementById('temaBtn');
+            
+            if (body.classList.contains('tema-escuro')) {
+                body.classList.remove('tema-escuro');
+                btn.textContent = '🌙';
+                localStorage.setItem('tema', 'claro');
+                temaSalvo = 'claro';
+            } else {
+                body.classList.add('tema-escuro');
+                btn.textContent = '☀️';
+                localStorage.setItem('tema', 'escuro');
+                temaSalvo = 'escuro';
+            }
+        }
+        
+        aplicarTema();
+
+        // ANIMAÇÃO AO CARREGAR
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('🎮 Página inicial do Sudoku Master carregada!');
+            
+            const sections = document.querySelectorAll('.section');
+            sections.forEach((section, index) => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(20px)';
+                section.style.transition = 'all 0.6s ease';
+                
+                setTimeout(() => {
+                    section.style.opacity = '1';
+                    section.style.transform = 'translateY(0)';
+                }, 100 * index);
+            });
+        });
+    </script>
+</body>
+</html>
