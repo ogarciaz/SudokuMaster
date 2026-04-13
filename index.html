@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sudoku Master - Desafie sua mente</title>
-    <link rel="stylesheet" href="/Sprints/style.css">
+    <link rel="stylesheet" href="style.css">
     <style>
         /* CSS DA VERIFICAÇÃO DE IDADE */
         .age-overlay {
@@ -196,7 +196,7 @@
             <div class="hero">
                 <h1>Bem-vindo ao Sudoku Master!</h1>
                 <p> Prepare-se para exercitar seu cérebro com o jogo de raciocínio mais famoso do mundo. Complete o tabuleiro e alcance a pontuação máxima!</p>
-                <a href="/Sprints/Jogo/index.html" class="play-button">🎮 JOGAR AGORA</a>
+                <a href="game.html" class="play-button">🎮 JOGAR AGORA</a>
             </div>
 
             <div id="como-jogar" class="section">
@@ -303,7 +303,7 @@
             <div class="section" style="text-align: center;">
                 <h2>Pronto para o desafio?</h2>
                 <p style="margin-bottom: 1.5rem;">Teste seu raciocínio e divirta-se com o Sudoku Master!</p>
-                <a href="/Jogo/index.html" class="play-button" style="font-size: 1.1rem; padding: 0.8rem 2rem;">🚀 COMEÇAR AGORA</a>
+                <a href="game.html" class="play-button" style="font-size: 1.1rem; padding: 0.8rem 2rem;">🚀 COMEÇAR AGORA</a>
             </div>
         </div>
 
@@ -336,11 +336,9 @@
             const conteudo = document.getElementById('conteudoPrincipal');
             
             if (maiorDe13) {
-                // Maior de 13 libera o site
                 overlay.style.display = 'none';
                 conteudo.classList.remove('conteudo-borrado');
             } else {
-                // Menor de 13 - borra o site
                 overlay.style.display = 'none';
                 conteudo.classList.add('conteudo-borrado');
                 alert('⚠️ Este jogo é recomendado para maiores de 13 anos. Volte quando tiver 13 anos ou mais!');
